@@ -1,35 +1,40 @@
-# Tools
+# 🔬 Mechanistic Interpretability Tools
 
 This directory contains all the mechanistic interpretability tools for single-cell data analysis.
 
-## Available Tools
+## 🧬 Available Tools
 
-### scFeatureLens
+### [scFeatureLens](scFeatureLens/) - Sparse Autoencoder Feature Extraction
 
-**Purpose**: Extract meaningful features from single-cell RNA-seq data model embeddings using sparse autoencoders and perform biological interpretation.
+**Extract meaningful features from single-cell RNA-seq model embeddings using sparse autoencoders**
 
-**Location**: `scFeatureLens/`
+🎯 **Purpose**: Understand what foundation models learn by training sparse autoencoders on embeddings and performing biological interpretation through differential expression and gene set enrichment analysis.
 
-**Key Features**:
-- Train sparse autoencoders on embeddings from foundation models (Geneformer, multiDGD, etc.)
-- Extract interpretable features from SAE activations
-- Differential gene expression analysis on feature-active vs inactive cells
-- Gene set enrichment analysis (GO terms, pathways, custom gene sets)
-- Generalizable across different embeddings and biological contexts
+📁 **Location**: [`scFeatureLens/`](scFeatureLens/)
 
-**Usage**:
+✨ **Key Capabilities**:
+- 🧠 Train sparse autoencoders on embeddings from any foundation model (Geneformer, multiDGD, etc.)
+- 🔍 Extract interpretable features from SAE activations
+- 📊 Differential gene expression analysis on feature-active vs inactive cells
+- 🧬 Gene set enrichment analysis (GO terms, pathways, custom gene sets)
+- 🌐 Generalizable across different embeddings and biological contexts
+
+🚀 **Quick Start**:
 ```bash
-# Command line interface
-python -m tools.scFeatureLens.sc_mechinterp --embeddings data.npy --output results/
+# Run basic example
+python -m tools.scFeatureLens.example --example basic
 
-# Python API
-from tools.scFeatureLens import SCFeatureLensPipeline, AnalysisConfig
-config = AnalysisConfig(embeddings_path="data.npy")
-pipeline = SCFeatureLensPipeline(config)
-pipeline.run_full_analysis()
+# Analyze your embeddings
+python -m tools.scFeatureLens.cli your_embeddings.pt --output-dir results
 ```
 
-**Documentation**: See `../examples/scFeatureLens/` for usage examples
+📚 **Documentation**: 
+- **[Complete Guide →](scFeatureLens/README.md)** - Full documentation, API reference, and advanced usage
+- **[Examples →](../examples/scFeatureLens/)** - Tutorials and example analyses
+
+---
+
+*🚀 More tools coming soon! Each new tool will follow the same structure and quality standards.*
 
 ## Tool Structure
 

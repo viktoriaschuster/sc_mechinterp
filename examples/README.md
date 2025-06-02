@@ -2,43 +2,43 @@
 
 This directory contains example usage of all tools in the sc_mechinterp collection.
 
-## scFeatureLens Examples
+## 🧬 scFeatureLens Examples
 
 The `scFeatureLens/` directory contains comprehensive examples for the scFeatureLens tool:
 
-### Available Examples
+### 🚀 Quick Start Examples
 
-1. **Basic Example** (`example.py --example basic`)
-   - Train SAE from scratch
-   - Extract features and run analysis
-   - Generate synthetic data demonstration
+1. **🎯 Basic Example** (`--example basic`)
+   - Complete end-to-end analysis with synthetic data
+   - Train SAE from scratch and run full analysis pipeline
+   - Perfect for first-time users and testing
 
-2. **Pre-trained Example** (`example.py --example pretrained`)
-   - Use pre-trained SAE model
-   - Skip training and focus on analysis
-   - Faster workflow for testing
+2. **⚡ Pre-trained Example** (`--example pretrained`)
+   - Use pre-trained SAE model to skip training
+   - Faster workflow focusing on analysis and interpretation
+   - Great for exploring features without training time
 
-3. **GO Enrichment Example** (`example.py --example go`)
+3. **🧬 GO Enrichment Example** (`--example go`)
    - Full Gene Ontology enrichment analysis
    - Real biological pathway interpretation
-   - Advanced feature interpretation
+   - Advanced feature interpretation and biological insights
 
-### Running Examples
+### 🏃‍♂️ Running Examples
 
 ```bash
 # Navigate to the repository root
 cd sc_mechinterp
 
 # Set up environment (if not already done)
-./setup/setup_env.sh
+./setup_env.sh
 
-# Run basic example
+# 🎯 Run basic example (recommended first step)
 python -m tools.scFeatureLens.example --example basic
 
-# Run pre-trained example  
+# ⚡ Run pre-trained example  
 python -m tools.scFeatureLens.example --example pretrained
 
-# Run GO enrichment example
+# 🧬 Run GO enrichment example
 python -m tools.scFeatureLens.example --example go
 ```
 

@@ -2,15 +2,43 @@
 
 A collection of mechanistic interpretability tools for single-cell data analysis.
 
+## 🚀 Quick Navigation
+
+**🔬 [Available Tools](#-available-tools)** | **⚡ [Quick Start](#-quick-start)** | **📚 [Documentation](docs/)** | **🎯 [Examples](examples/)**
+
+---
+
 ## Overview
 
 This repository contains various tools for mechanistic interpretability analysis of single-cell RNA-seq data and foundation models. Each tool focuses on different aspects of understanding and interpreting the learned representations in single-cell models.
 
-**🔬 Available Tools**
+## 🔬 Available Tools
 
-- [scFeatureLens](tools/scFeatureLens/)
+### 🧬 [scFeatureLens](tools/scFeatureLens/) - Sparse Autoencoder Feature Extraction
 
-*More tools coming in the future! The repository structure is designed to easily accommodate additional mechanistic interpretability tools.*
+**Extract meaningful features from single-cell RNA-seq model embeddings using sparse autoencoders**
+
+- 🧠 **Train sparse autoencoders** on embeddings from any foundation model (Geneformer, multiDGD, etc.)
+- 🔍 **Feature analysis** - identify which features are active for different cell types or conditions  
+- 📊 **Differential expression** - compare gene expression between feature-active and inactive cells
+- 🧬 **Gene set enrichment** - analyze enriched biological pathways and GO terms
+- 📈 **Biological interpretation** - understand what biological processes each feature represents
+
+**Quick Start:**
+```bash
+# Run basic example with synthetic data
+python -m tools.scFeatureLens.example --example basic
+
+# Analyze your own embeddings  
+python -m tools.scFeatureLens.cli your_embeddings.pt --output-dir results
+```
+
+📚 **[Complete Documentation & API Guide →](tools/scFeatureLens/README.md)**  
+🎯 **[Examples & Tutorials →](examples/scFeatureLens/)**
+
+---
+
+*🚀 More mechanistic interpretability tools coming soon! The repository structure is designed to easily accommodate additional tools.*
 
 ## 📁 Repository Structure
 
@@ -69,30 +97,23 @@ python -c "from tools.scFeatureLens import SCFeatureLensPipeline; print('✓ Iso
 
 ## 🔬 Tools
 
-### scFeatureLens
+### 🧬 scFeatureLens
 
-A tool for extracting meaningful features from single-cell RNA-seq data model embeddings using sparse autoencoders and performing biological interpretation through differential gene expression analysis and gene set enrichment.
+**Extract meaningful features from single-cell RNA-seq model embeddings using sparse autoencoders**
 
-**Features:**
-- Train sparse autoencoders on embeddings from any foundation model
-- Extract and analyze feature activations
-- Perform differential expression analysis on feature-active vs inactive cells
-- Gene set enrichment analysis (GO terms, pathways, custom gene sets)
-- Support for multiple embedding formats (Geneformer, multiDGD, custom)
+Train sparse autoencoders on embeddings from any foundation model, analyze feature activations, perform differential expression analysis, and interpret results through gene set enrichment.
 
-**Quick Start:**
+**Quick Examples:**
 ```bash
-# Run basic example
+# Basic analysis with synthetic data
 python -m tools.scFeatureLens.example --example basic
-
-# CLI usage
-python -m tools.scFeatureLens.cli --help
 
 # Custom analysis
 python -m tools.scFeatureLens.cli my_embeddings.pt --config my_config.yaml
 ```
 
-**More Details:** See [`tools/scFeatureLens/`](tools/scFeatureLens/) and [`examples/scFeatureLens/`](examples/scFeatureLens/)
+📚 **[Complete Documentation & API Guide →](tools/scFeatureLens/README.md)**  
+🎯 **[Examples & Tutorials →](examples/scFeatureLens/)**
 
 ## 🚀 Quick Start
 
