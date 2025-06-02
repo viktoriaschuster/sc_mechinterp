@@ -184,6 +184,7 @@ temp_data/
 **/example_*_results/
 **/test_*output/
 **/temp_*/
+old_code/
 
 # Generated model and data files
 *.pt
