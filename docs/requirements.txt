@@ -1,0 +1,16 @@
+# Documentation requirements
+sphinx>=5.0.0
+sphinx-rtd-theme>=1.0.0
+myst-parser>=0.18.0
+nbsphinx>=0.8.0
+sphinx-copybutton>=0.5.0
+sphinx-design>=0.3.0
+sphinx-autoapi>=2.0.0
+
+# For building notebooks
+jupyter>=1.0.0
+ipykernel>=6.0.0
+
+# Additional dependencies for API docs
+sphinx-autodoc-typehints>=1.19.0
+sphinx-tabs>=3.4.0
