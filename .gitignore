@@ -237,6 +237,9 @@ cache/
 # Reorganization and development files
 REORGANIZATION_COMPLETE.md
 agent.md
+COMPLETION_SUMMARY.md
+DEVELOPMENT_CHECKLIST.md
+PROJECT_STATUS.md
 
 # Conda environments
 environment-*.yml
