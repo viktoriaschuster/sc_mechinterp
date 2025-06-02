@@ -1,0 +1,49 @@
+# Example configuration file for SC MechInterp analysis
+# This file shows all available options with their default values
+
+# Input/Output Configuration
+embeddings_path: "sae_geneformer_10000_l1-1e-3_lr-1e-4_500epochs_activations.pt"
+output_dir: "results"
+sae_model_path: null  # Set this to use a pre-trained SAE model
+
+# Data Configuration
+gene_expression_data_path: null  # Path to gene expression data (optional)
+library_size_column: "n_counts"
+gene_name_column: "gene_name"
+
+# SAE Configuration
+sae_hidden_size: 10000
+sae_l1_penalty: 0.001
+sae_learning_rate: 0.0001
+sae_epochs: 500
+train_sae: true
+
+# Feature Selection Configuration
+activation_percentile: 99
+min_active_samples: 100
+max_active_samples: null  # No maximum limit
+
+# Differential Expression Configuration
+deg_p_threshold: 0.00001
+deg_fold_change_threshold: 2.0
+
+# Gene Set Analysis Configuration
+gene_sets_path: null
+gene_set_type: "go"  # Options: "go" or "custom"
+go_category: "biological_process"  # Options: biological_process, molecular_function, cellular_component
+go_obo_path: "data/go-basic.obo"
+go_gaf_path: "data/goa_human.gaf"
+min_genes_per_set: 10
+max_genes_per_set: 500
+
+# Enrichment Analysis Configuration
+enrichment_p_threshold: 0.05
+
+# Computational Configuration
+device: "auto"  # Options: "auto", "cpu", "cuda", "cuda:0", etc.
+batch_size: 128
+n_processes: null  # null means use all available cores
+verbose: true
+
+# Random Seed
+random_seed: 42
