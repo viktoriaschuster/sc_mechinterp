@@ -6,6 +6,12 @@ A collection of mechanistic interpretability tools for single-cell data analysis
 
 This repository contains various tools for mechanistic interpretability analysis of single-cell RNA-seq data and foundation models. Each tool focuses on different aspects of understanding and interpreting the learned representations in single-cell models.
 
+**🔬 Available Tools**
+
+- [scFeatureLens](tools/scFeatureLens/)
+
+*More tools coming in the future! The repository structure is designed to easily accommodate additional mechanistic interpretability tools.*
+
 ## 📁 Repository Structure
 
 ```
