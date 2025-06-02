@@ -1,0 +1,24 @@
+name: sc_mechinterp
+channels:
+  - pytorch
+  - conda-forge
+  - defaults
+dependencies:
+  - python=3.10
+  - pip
+  - numpy>=1.21.0
+  - pandas>=1.3.0
+  - scipy>=1.7.0
+  - scikit-learn>=1.0.0
+  - pyyaml>=6.0
+  - tqdm>=4.62.0
+  - psutil>=5.8.0
+  - pytorch>=1.9.0
+  - torchvision
+  - torchaudio
+  - pip:
+    - statsmodels>=0.13.0
+    - anndata>=0.8.0
+    - scanpy>=1.8.0
+    - goatools>=1.2.0
+    - -e .
