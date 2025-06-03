@@ -46,14 +46,9 @@ sc_mechinterp/
 ├── 📁 tests/                 # Test suites  
 ```
 
-## 🔬 Environment & Reproducibility
+## 🔬 Environment
 
 scFeatureLens provides multiple options for creating isolated, reproducible environments:
-
-- **🔄 Complete Isolation**: Each setup method creates a dedicated environment that won't interfere with other projects
-- **📋 Reproducibility**: Pin exact dependency versions for consistent results across systems  
-- **🛡️ Safety**: No conflicts with existing Python installations or packages
-- **📦 Portability**: Easy to share and deploy across different machines
 
 ### Available Setup Methods
 
