@@ -11,14 +11,9 @@ Author: Viktoria Schuster
 License: MIT
 """
 
-from .pipeline import SCFeatureLensPipeline, AnalysisConfig
+from .pipeline import SCFeatureLensPipeline
+from .utils import AnalysisConfig
 from .sae import SparseAutoencoder
-from .analysis_functions import (
-    differential_expression_analysis,
-    gene_set_enrichment_analysis,
-    filter_active_features,
-    select_high_low_activation_samples
-)
 
 __version__ = "0.1.0"
 __author__ = "Viktoria Schuster"
@@ -27,8 +22,4 @@ __all__ = [
     "SCFeatureLensPipeline",
     "AnalysisConfig", 
     "SparseAutoencoder",
-    "differential_expression_analysis",
-    "gene_set_enrichment_analysis",
-    "filter_active_features",
-    "select_high_low_activation_samples"
 ]

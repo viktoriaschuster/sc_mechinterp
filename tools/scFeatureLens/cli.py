@@ -7,7 +7,6 @@ import yaml
 from pathlib import Path
 from .pipeline import SCFeatureLensPipeline, AnalysisConfig
 
-
 def main():
     """Main entry point for command-line interface."""
     parser = argparse.ArgumentParser(
@@ -58,11 +57,30 @@ Examples:
         action="store_true",
         help="Don't train SAE, use existing model"
     )
+
+    parser.add_argument(
+        "--train-only",
+        type=bool,
+        default=False,
+        help="Only train the SAE model, do not run full analysis (default: False)"
+    )
     
     parser.add_argument(
-        "--gene-expression-data",
+        "--data",
         type=str,
         help="Path to gene expression data for DEG analysis"
+    )
+
+    parser.add_argument(
+        "--predictions",
+        type=str,
+        help="Path to predictions file for feature importance analysis"
+    )
+
+    parser.add_argument(
+        "--dispersions",
+        type=str,
+        help="Path to dispersion factors for DEG analysis"
     )
     
     parser.add_argument(
@@ -105,6 +123,13 @@ Examples:
         action="version",
         version="scFeatureLens 0.1.0"
     )
+
+    parser.add_argument(
+        "--epochs",
+        type=int,
+        default=500,
+        help="Number of training epochs for SAE (default: 500)"
+    )
     
     args = parser.parse_args()
     
@@ -123,8 +148,8 @@ Examples:
         config.sae_model_path = args.sae_model_path
     if args.no_train_sae:
         config.train_sae = False
-    if args.gene_expression_data:
-        config.gene_expression_data_path = args.gene_expression_data
+    if args.data:
+        config.gene_expression_data_path = args.data
     if args.go_category != "biological_process":
         config.go_category = args.go_category
     if args.min_active_samples != 100:
@@ -135,6 +160,14 @@ Examples:
         config.device = args.device
     if args.verbose:
         config.verbose = True
+    if args.train_only:
+        config.train_only = args.train_only
+    if args.epochs != 500:
+        config.sae_epochs = args.epochs
+    if args.predictions:
+        config.predictions_path = args.predictions
+    if args.dispersions:
+        config.dispersions_path = args.dispersions
     
     print("scFeatureLens: Single-Cell Feature Lens for Mechanistic Interpretability")
     print("=" * 70)
@@ -150,7 +183,6 @@ Examples:
     
     print("\nAnalysis completed successfully!")
     print(f"Results saved to: {config.output_dir}")
-
 
 if __name__ == "__main__":
     main()

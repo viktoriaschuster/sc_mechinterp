@@ -2,6 +2,7 @@
 Sparse Autoencoder implementation for scFeatureLens.
 """
 
+import os
 import torch
 import torch.nn as nn
 from typing import Tuple
@@ -74,3 +75,71 @@ class SparseAutoencoder(nn.Module):
         total = recon_loss + sparse_loss
         
         return total, recon_loss, sparse_loss
+
+def train_sae(embeddings, config, logger):
+    """Train a Sparse Autoencoder on the embeddings."""
+    if embeddings is None:
+        logger.error("No embeddings loaded for SAE training")
+        return
+
+    logger.info("Training Sparse Autoencoder...")
+
+    # Create model
+    input_size = embeddings.shape[1]
+    hidden_size = config.sae_hidden_size
+    sae_model = SparseAutoencoder(input_size, hidden_size)
+    sae_model.to(config.device)
+
+    # Training parameters
+    lr = config.sae_learning_rate
+    l1_weight = config.sae_l1_weight
+    batch_size = config.sae_batch_size
+    epochs = config.sae_epochs
+
+    # Create optimizer
+    optimizer = torch.optim.Adam(sae_model.parameters(), lr=lr)
+
+    # Create dataset
+    dataset = torch.utils.data.TensorDataset(embeddings)
+    dataloader = torch.utils.data.DataLoader(dataset, batch_size=batch_size, shuffle=True)
+    
+    # Training loop
+    device = torch.device(config.device)
+    for epoch in range(epochs):
+        running_loss = 0.0
+        running_mse_loss = 0.0
+        running_l1_loss = 0.0
+        
+        for batch in dataloader:
+            # Get batch and move to device
+            x = batch[0].to(device)
+            
+            # Forward pass
+            optimizer.zero_grad()
+            recon, encoded = sae_model(x)
+            
+            # Calculate losses
+            mse_loss = torch.nn.functional.mse_loss(recon, x)
+            l1_loss = torch.mean(torch.abs(encoded))
+            loss = mse_loss + l1_weight * l1_loss
+            
+            # Backward pass
+            loss.backward()
+            optimizer.step()
+            
+            # Track losses
+            running_loss += loss.item()
+            running_mse_loss += mse_loss.item()
+            running_l1_loss += l1_loss.item()
+        
+        # Print progress
+        if config.verbose and (epoch % 10 == 0 or epoch == epochs - 1):
+            logger.info(f"Epoch {epoch+1}/{epochs}, Loss: {running_loss/len(dataloader):.6f}, "
+                    f"MSE: {running_mse_loss/len(dataloader):.6f}, L1: {running_l1_loss/len(dataloader):.6f}")
+    
+    # Save model
+    model_path = os.path.join(config.output_dir, "sae_model.pt")
+    torch.save(sae_model.state_dict(), model_path)
+    logger.info(f"SAE model saved to {model_path}")
+
+    return sae_model
