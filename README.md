@@ -1,6 +1,6 @@
 # sc_mechinterp
 
-A collection of mechanistic interpretability tools for single-cell data analysis.
+A collection of mechanistic interpretability tools for single-cell data analysis. *A lot of setup code is experimental and may change in the future. Please let me know if you have any issues or suggestions.*
 
 ## 🚀 Quick Navigation
 
@@ -10,7 +10,7 @@ A collection of mechanistic interpretability tools for single-cell data analysis
 
 ## Overview
 
-This repository contains various tools for mechanistic interpretability analysis of single-cell RNA-seq data and foundation models. Each tool focuses on different aspects of understanding and interpreting the learned representations in single-cell models.
+This repository is for mechanistic interpretability analysis of single-cell RNA-seq data and foundation models. Each tool focuses on different aspects of understanding and interpreting the learned representations in single-cell models.
 
 ## 🔬 Available Tools
 
@@ -23,15 +23,6 @@ This repository contains various tools for mechanistic interpretability analysis
 - 📊 **Differential expression** - compare gene expression between feature-active and inactive cells
 - 🧬 **Gene set enrichment** - analyze enriched biological pathways and GO terms
 - 📈 **Biological interpretation** - understand what biological processes each feature represents
-
-**Quick Start:**
-```bash
-# Run basic example with synthetic data
-python -m tools.scFeatureLens.example --example basic
-
-# Analyze your own embeddings  
-python -m tools.scFeatureLens.cli your_embeddings.pt --output-dir results
-```
 
 📚 **[Complete Documentation & API Guide →](tools/scFeatureLens/README.md)**  
 🎯 **[Examples & Tutorials →](examples/scFeatureLens/)**
@@ -53,18 +44,9 @@ sc_mechinterp/
 ├── 📁 tools/                 # All analysis tools
 ├── 📁 examples/              # Usage examples & demos
 ├── 📁 tests/                 # Test suites  
-└── 📁 scripts/               # Utility scripts
 ```
 
-This structure ensures:
-- **🎯 Clean organization**: Core tools separated from setup and examples
-- **📈 Scalability**: Easy to add new tools without cluttering the root
-- **🔧 Easy maintenance**: Setup files organized in dedicated directories
-- **📚 Clear documentation**: All guides in the `docs/` directory
-
 ## 🔬 Environment & Reproducibility
-
-### Isolated Environment Setup
 
 scFeatureLens provides multiple options for creating isolated, reproducible environments:
 
@@ -75,13 +57,15 @@ scFeatureLens provides multiple options for creating isolated, reproducible envi
 
 ### Available Setup Methods
 
-| Method | Best For | Isolation Level | Command |
-|--------|----------|-----------------|---------|
-| **Automated Script** | Quick start, auto-detection | High | `./setup_env.sh` |
-| **Conda** | Data science workflows | High | See [`docs/ENVIRONMENT_SETUP.md`](docs/ENVIRONMENT_SETUP.md) |
-| **Virtual Environment** | Standard Python projects | Medium | See [`docs/ENVIRONMENT_SETUP.md`](docs/ENVIRONMENT_SETUP.md) |
-| **Poetry** | Modern dependency management | High | See [`docs/ENVIRONMENT_SETUP.md`](docs/ENVIRONMENT_SETUP.md) |
-| **Docker** | Ultimate isolation & deployment | Maximum | See [`docs/DOCKER_GUIDE.md`](docs/DOCKER_GUIDE.md) |
+| Method | Command |
+|--------|----------|
+| **Automated Script** | `./setup_env.sh` |
+| **Conda** | See [`docs/ENVIRONMENT_SETUP.md`](docs/ENVIRONMENT_SETUP.md) |
+| **Virtual Environment** | See [`docs/ENVIRONMENT_SETUP.md`](docs/ENVIRONMENT_SETUP.md) |
+| **Poetry** | See [`docs/ENVIRONMENT_SETUP.md`](docs/ENVIRONMENT_SETUP.md) |
+| **Docker** | See [`docs/DOCKER_GUIDE.md`](docs/DOCKER_GUIDE.md) |
+
+I have only been working with conda, so let me know if you have any issues with the other setups.
 
 ### Quick Environment Check
 
@@ -94,26 +78,6 @@ echo $CONDA_DEFAULT_ENV   # Should show 'sc_mechinterp' (if using conda)
 # Test package imports
 python -c "from tools.scFeatureLens import SCFeatureLensPipeline; print('✓ Isolated environment ready')"
 ```
-
-## 🔬 Tools
-
-### 🧬 scFeatureLens
-
-**Extract meaningful features from single-cell RNA-seq model embeddings using sparse autoencoders**
-
-Train sparse autoencoders on embeddings from any foundation model, analyze feature activations, perform differential expression analysis, and interpret results through gene set enrichment.
-
-**Quick Examples:**
-```bash
-# Basic analysis with synthetic data
-python -m tools.scFeatureLens.example --example basic
-
-# Custom analysis
-python -m tools.scFeatureLens.cli my_embeddings.pt --config my_config.yaml
-```
-
-📚 **[Complete Documentation & API Guide →](tools/scFeatureLens/README.md)**  
-🎯 **[Examples & Tutorials →](examples/scFeatureLens/)**
 
 ## 🚀 Quick Start
 
@@ -128,23 +92,7 @@ cd sc_mechinterp
 
 # Run automated environment setup
 ./setup_env.sh
-
-# Follow prompts to choose your preferred environment manager
-# The script handles isolation and dependency management automatically
-
-# Test installation
-python -m tools.scFeatureLens.example --example basic
 ```
-
-### Environment Options
-
-Choose your preferred isolated environment setup:
-
-1. **🔬 Automated Setup**: [`./setup_env.sh`](setup_env.sh) - One-command setup with auto-detection
-2. **⚡ Quick Setup**: [`docs/QUICKSTART.md`](docs/QUICKSTART.md) - 5-minute manual setup  
-3. **📚 Detailed Setup**: [`docs/ENVIRONMENT_SETUP.md`](docs/ENVIRONMENT_SETUP.md) - Comprehensive environment guide
-4. **🔄 Reproducibility**: [`docs/REPRODUCIBILITY_GUIDE.md`](docs/REPRODUCIBILITY_GUIDE.md) - Complete isolation and reproducibility
-5. **🐳 Docker Setup**: [`docs/DOCKER_GUIDE.md`](docs/DOCKER_GUIDE.md) - Ultimate isolation with containers
 
 ### Verification
 
@@ -157,57 +105,21 @@ python -c "from tools.scFeatureLens import SCFeatureLensPipeline; print('✓ Ins
 # Run validation suite
 python setup/validate_environment.py
 
-# Run full example pipeline
-python -m tools.scFeatureLens.example --example basic
-
 # Check CLI interface
 python -m tools.scFeatureLens.cli --help
 ```
-
-## Installation
-
-### Automated (Recommended)
-
-```bash
-# Clone the repository
-git clone https://github.com/yourusername/sc_mechinterp.git
-cd sc_mechinterp
-
-# Run automated setup
-./setup_env.sh
-```
-
-### Manual Installation
-
-```bash
-# Create isolated environment (conda recommended)
-conda create -n sc_mechinterp python=3.10
-conda activate sc_mechinterp
-
-# Install PyTorch (adjust for your system)
-conda install pytorch torchvision torchaudio cpuonly -c pytorch
-
-# Install dependencies and package
-pip install -r setup/requirements.txt
-pip install -e .
-```
-
-**⚠️ Important**: Always use an isolated environment to avoid conflicts with other projects.
 
 ## Data Requirements
 
 ### For scFeatureLens
 
-- **Embeddings**: Model embeddings in `.pt`, `.npy`, `.csv`, or `.h5ad` format
-- **Gene Expression Data** (optional): For differential expression analysis
-- **Gene Sets**: GO terms (automatically downloaded) or custom gene sets
+- **Embeddings**: Model embeddings in `.pt`, `.npy`, or `.csv` format
+- **Gene Expression Data** (optional): For downstream analysis. Currently supported: `.h5ad`. Coming soon: `.loom`, `.csv`, `.h5mu`.
+- **Gene Sets**: GO terms (automatically downloaded) or custom gene sets (coming soon)
 
 ### Example Data
 
-The repository includes example data in `examples/scFeatureLens/`:
-- Pre-trained SAE activations
-- Synthetic datasets for testing
-- Configuration examples
+The repository includes example data in `examples/scFeatureLens/` from the paper.
 
 ## 📖 Documentation
 
@@ -215,30 +127,6 @@ All documentation is organized in the [`docs/`](docs/) directory:
 
 - **[Quick Start Guide](docs/QUICKSTART.md)** - Get running in 5 minutes
 - **[Environment Setup](docs/ENVIRONMENT_SETUP.md)** - Detailed installation guide  
-- **[Reproducibility Guide](docs/REPRODUCIBILITY_GUIDE.md)** - Ensuring consistent results
-- **[Docker Guide](docs/DOCKER_GUIDE.md)** - Container deployment
-- **[Development Checklist](docs/DEVELOPMENT_CHECKLIST.md)** - For contributors
-
-## Configuration
-
-Each tool can be configured using YAML files. See `examples/scFeatureLens/config_example.yaml` for an example configuration.
-
-## Development
-
-To add a new tool to the collection:
-
-1. Create a new directory under `tools/`
-2. Implement the tool following the established patterns (see `tools/README.md`)
-3. Add CLI interface and configuration support
-4. Add examples in `examples/YourTool/`
-5. Update this README with tool documentation
-6. Add tests in the `tests/` directory
-
-See [`docs/DEVELOPMENT_CHECKLIST.md`](docs/DEVELOPMENT_CHECKLIST.md) for detailed guidelines.
-
-## Contributing
-
-Contributions are welcome! Please see the development section above and check the documentation in `docs/` for guidelines.
 
 ## License
 
